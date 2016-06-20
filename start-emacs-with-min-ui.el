@@ -25,7 +25,7 @@
     ;; disable ido faces to see flx highlights.
     (setq ido-use-faces nil)))
 
-;;; Initialize Emacs with minimum distractions. 
+;;; Initialize Emacs with minimum distractions.
 ;;;
 ;;;###autoload
 (defun init-emacs ()
@@ -51,7 +51,7 @@
         (around no-query-kill-emacs activate)
       (flet ((process-list ())) ad-do-it))))
 
-;;; Rename file and buffer simultaneously.
+;;; Rename both file and current buffer.
 ;;;
 ;;;###autoload
 (defun rename-file-and-buffer (new-name)

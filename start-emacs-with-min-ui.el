@@ -7,13 +7,11 @@
 ;;
 ;;; Code:
 
-(require 'cl)
 (require 'ido)
-
-;;; initialize ido-mode with some desirable features
+;;; Initialize ido-mode with some desirable features.
 ;;;
 ;;;###autoload
-(defun initialize-ido ()
+(defun init-ido-mode ()
   (progn
     (ido-mode t)
     (ido-everywhere t)
@@ -27,40 +25,33 @@
     ;; disable ido faces to see flx highlights.
     (setq ido-use-faces nil)))
 
-;;; initialize Emacs with preferred settings
+;;; Initialize Emacs with minimum distractions. 
 ;;;
 ;;;###autoload
-(defun start-emacs-with-min-ui ()
+(defun init-emacs ()
   (progn
     (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
       (when (fboundp mode) (funcall mode -1)))
     (setq inhibit-startup-screen t)
-    ;;
-    ;; no junk
-    ;;
     (setq auto-save-file-name-transforms
           `((".*" ,temporary-file-directory t))
           backup-directory-alist `((".*" . ,temporary-file-directory)))
+
     ;; set utf-8 as default encoding
     (prefer-coding-system 'utf-8)
     (setq coding-system-for-read 'utf-8)
     (setq coding-system-for-write 'utf-8)
 
-    ;;
-    ;; some useful initialization
-    ;;
-    (setq column-number-mode t)      ;; enable column-number-mode
-    (global-hl-line-mode)	         ;; highlight current line
-    (setq scroll-step 1)             ;; keyboard scroll one line at a time
+    (setq column-number-mode t) ;; enable column-number-mode
+    (global-hl-line-mode)	;; highlight current line
+    (setq scroll-step 1)        ;; keyboard scroll one line at a time
     (setq-default indent-tabs-mode nil)
     ;; redefine save-buffers-kill-emacs function
     (defadvice save-buffers-kill-emacs
         (around no-query-kill-emacs activate)
       (flet ((process-list ())) ad-do-it))))
 
-;;; Some helper functions
-;;;
-;;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+;;; Rename file and buffer simultaneously.
 ;;;
 ;;;###autoload
 (defun rename-file-and-buffer (new-name)
@@ -77,14 +68,6 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
-
-;;; entry point for Emacs initialization
-;;;
-;;;###autoload
-(defun initialize-emacs-with-min-ui ()
-  (progn
-    (start-emacs-with-min-ui)
-    (initialize-ido)))
 
 (provide 'start-emacs-with-min-ui)
 ;;; start-emacs-with-min-ui.el ends here

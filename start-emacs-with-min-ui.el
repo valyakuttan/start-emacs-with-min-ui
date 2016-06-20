@@ -10,6 +10,9 @@
 (require 'cl)
 (require 'ido)
 
+;;; initialize ido-mode with some desirable features
+;;;
+;;;###autoload
 (defun initialize-ido ()
   (progn
     (ido-mode t)
@@ -24,6 +27,9 @@
     ;; disable ido faces to see flx highlights.
     (setq ido-use-faces nil)))
 
+;;; initialize Emacs with preferred settings
+;;;
+;;;###autoload
 (defun start-emacs-with-min-ui ()
   (progn
     (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode))
@@ -52,10 +58,11 @@
         (around no-query-kill-emacs activate)
       (flet ((process-list ())) ad-do-it))))
 
-;;
-;; Some helper functions
-;;
-;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+;;; Some helper functions
+;;;
+;;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+;;;
+;;;###autoload
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
@@ -71,6 +78,9 @@
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
+;;; entry point for Emacs initialization
+;;;
+;;;###autoload
 (defun initialize-emacs-with-min-ui ()
   (progn
     (start-emacs-with-min-ui)

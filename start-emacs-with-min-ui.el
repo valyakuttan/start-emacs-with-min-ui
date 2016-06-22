@@ -7,7 +7,6 @@
 ;;
 ;;; Code:
 
-(require 'ido)
 ;;; Initialize ido-mode with some desirable features.
 ;;;
 ;;;###autoload

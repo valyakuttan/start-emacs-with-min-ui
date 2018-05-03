@@ -44,13 +44,9 @@
     (setq column-number-mode t) ;; enable column-number-mode
     (global-hl-line-mode)	;; highlight current line
     (setq scroll-step 1)        ;; keyboard scroll one line at a time
-    (setq-default indent-tabs-mode nil)
-    ;; redefine save-buffers-kill-emacs function
-    (defadvice save-buffers-kill-emacs
-        (around no-query-kill-emacs activate)
-      (flet ((process-list ())) ad-do-it))))
+    (setq-default indent-tabs-mode nil)))
 
-;;; Rename both file and current buffer.
+;; Rename both file and current buffer.
 ;;;
 ;;;###autoload
 (defun rename-file-and-buffer (new-name)

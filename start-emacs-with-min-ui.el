@@ -7,23 +7,6 @@
 ;;
 ;;; Code:
 
-;;; Initialize ido-mode with some desirable features.
-;;;
-;;;###autoload
-(defun init-ido-mode ()
-  (progn
-    (ido-mode t)
-    (ido-everywhere t)
-    (setq ido-save-directory-list-file
-          (locate-user-emacs-file ".ido.last"))
-    (setq ido-enable-flex-matching t)
-    (setq ido-use-filename-at-point 'guess)
-    (setq ido-default-buffer-method 'other-window)
-    (setq ido-auto-merge-work-directories-length 0)
-    (setq ido-use-virtual-buffers t)
-    ;; disable ido faces to see flx highlights.
-    (setq ido-use-faces nil)))
-
 ;;; Initialize Emacs with minimum distractions.
 ;;;
 ;;;###autoload
@@ -34,17 +17,22 @@
     (setq inhibit-startup-screen t)
     (setq auto-save-file-name-transforms
           `((".*" ,temporary-file-directory t))
-          backup-directory-alist `((".*" . ,temporary-file-directory)))
+          backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
 
     ;; set utf-8 as default encoding
     (prefer-coding-system 'utf-8)
     (setq coding-system-for-read 'utf-8)
     (setq coding-system-for-write 'utf-8)
 
+    ;;; Set font
+    (set-frame-font "Inconsolata 14")
+
     (setq column-number-mode t) ;; enable column-number-mode
     (global-hl-line-mode)	;; highlight current line
-    (setq scroll-step 1)        ;; keyboard scroll one line at a time
+    (setq scroll-step 1)    ;; keyboard scroll one line at a time
     (setq-default indent-tabs-mode nil)))
+
 
 ;; Rename both file and current buffer.
 ;;;

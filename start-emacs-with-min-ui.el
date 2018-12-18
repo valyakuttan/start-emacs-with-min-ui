@@ -31,7 +31,17 @@
     (setq column-number-mode t) ;; enable column-number-mode
     (global-hl-line-mode)	;; highlight current line
     (setq scroll-step 1)    ;; keyboard scroll one line at a time
-    (setq-default indent-tabs-mode nil)))
+
+    (global-set-key (kbd "RET") 'newline-and-indent)
+    ;; activate whitespace-mode to view all whitespace characters
+    (global-set-key (kbd "C-c w") 'whitespace-mode)
+    ;; show unncessary whitespace that can mess up your diff
+    (add-hook 'prog-mode-hook (lambda () (interactive)
+                                (setq show-trailing-whitespace 1)))
+    ;; use space to indent by default
+    (setq-default indent-tabs-mode nil)
+    ;; set appearance of a tab that is represented by 4 spaces
+    (setq-default tab-width 4)))
 
 
 ;; Rename both file and current buffer.

@@ -26,7 +26,7 @@
     (setq coding-system-for-write 'utf-8)
 
     ;;; Set font
-    (set-frame-font "Inconsolata 14")
+    ;; (set-frame-font "Inconsolata 14")
 
     (setq column-number-mode t) ;; enable column-number-mode
     (global-hl-line-mode)	;; highlight current line
